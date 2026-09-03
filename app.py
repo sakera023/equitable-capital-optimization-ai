@@ -13,6 +13,8 @@ from equitable_capital import (
     generate_synthetic_startups,
     global_feature_importance,
     opportunity_gap,
+    PUBLIC_DATASETS,
+    load_sba_public_workbook,
     summarize_allocation,
     train_model,
 )
@@ -71,6 +73,11 @@ def load_model(data: pd.DataFrame):
     return train_model(data)
 
 
+@st.cache_data(ttl=3600, show_spinner=False)
+def load_public_workbook(dataset_key: str):
+    return load_sba_public_workbook(dataset_key)
+
+
 data = load_data()
 result = load_model(data)
 scored = result.scored_data
@@ -90,7 +97,9 @@ with st.sidebar:
         step=100_000.0,
     )
     st.divider()
-    st.caption("Synthetic data • reproducible seed • no API keys required")
+    st.caption(
+        "Synthetic model • optional official SBA public data • no API key required"
+    )
 
 tabs = st.tabs(
     [
@@ -98,6 +107,7 @@ tabs = st.tabs(
         "Business Assessment",
         "Fairness Audit",
         "Capital Allocation",
+        "U.S. Public Data",
         "Model Details",
     ]
 )
@@ -230,6 +240,86 @@ with tabs[3]:
     )
 
 with tabs[4]:
+    st.subheader("Official U.S. Small Business Data")
+    st.write(
+        "Browse authoritative aggregate datasets from the U.S. Small Business "
+        "Administration Office of Advocacy. These data provide geographic and "
+        "economic context and are kept separate from the synthetic prediction model."
+    )
+
+    public_options = {
+        dataset["label"]: key for key, dataset in PUBLIC_DATASETS.items()
+    }
+    selected_label = st.selectbox(
+        "Choose an official dataset",
+        list(public_options),
+        key="public_dataset_selector",
+    )
+    selected_key = public_options[selected_label]
+    selected_source = PUBLIC_DATASETS[selected_key]
+
+    st.caption(selected_source["description"])
+    st.link_button(
+        "Open official SBA dataset page",
+        selected_source["landing_page"],
+    )
+
+    session_key = f"public_workbook::{selected_key}"
+    if st.button("Load official SBA workbook", type="primary"):
+        try:
+            with st.spinner("Loading the current official SBA workbook..."):
+                st.session_state[session_key] = load_public_workbook(selected_key)
+        except Exception as exc:
+            st.error(
+                "The public dataset could not be loaded right now. "
+                f"Source error: {exc}"
+            )
+
+    if session_key in st.session_state:
+        metadata, public_sheets = st.session_state[session_key]
+
+        st.success("Official SBA data loaded.")
+        st.markdown(
+            f"**Publisher:** U.S. Small Business Administration, Office of Advocacy  \\n"
+            f"**Dataset:** {metadata['package_title']}  \\n"
+            f"**Last catalog update:** {metadata['last_modified'] or 'Not reported'}  \\n"
+            f"**License:** {metadata['license_title']}"
+        )
+
+        public_sheet_name = st.selectbox(
+            "Workbook sheet",
+            list(public_sheets),
+            key=f"public_sheet::{selected_key}",
+        )
+        public_frame = public_sheets[public_sheet_name]
+        st.dataframe(
+            public_frame.head(2000),
+            use_container_width=True,
+            hide_index=True,
+        )
+        st.caption(
+            f"Showing up to 2,000 rows from {len(public_frame):,} rows in this sheet."
+        )
+
+        csv_name = (
+            f"{selected_key}_{public_sheet_name}"
+            .lower()
+            .replace(" ", "_")
+            .replace("/", "_")
+        )
+        st.download_button(
+            "Download selected sheet as CSV",
+            public_frame.to_csv(index=False).encode("utf-8"),
+            file_name=f"{csv_name}.csv",
+            mime="text/csv",
+        )
+        st.info(
+            "These aggregate public statistics are provided for contextual research "
+            "only. They are not used to train or validate the applicant-level "
+            "synthetic capital-readiness model."
+        )
+
+with tabs[5]:
     st.subheader("Model Performance")
     metric_table = pd.DataFrame(
         [{"metric": name, "value": value} for name, value in result.metrics.items()]
