@@ -7,14 +7,14 @@ import plotly.express as px
 import streamlit as st
 
 from equitable_capital import (
+    PUBLIC_DATASETS,
     allocate_capital,
     explain_applicant,
     fairness_audit,
     generate_synthetic_startups,
     global_feature_importance,
-    opportunity_gap,
-    PUBLIC_DATASETS,
     load_sba_public_workbook,
+    opportunity_gap,
     summarize_allocation,
     train_model,
 )
