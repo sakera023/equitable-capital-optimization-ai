@@ -10,15 +10,19 @@ from .modeling import (
     global_feature_importance,
     train_model,
 )
+from .public_data import PUBLIC_DATASETS, get_sba_dataset_metadata, load_sba_public_workbook
 
 __all__ = [
     "ModelResult",
+    "PUBLIC_DATASETS",
     "allocate_capital",
     "build_pipeline",
     "explain_applicant",
     "fairness_audit",
     "generate_synthetic_startups",
+    "get_sba_dataset_metadata",
     "global_feature_importance",
+    "load_sba_public_workbook",
     "opportunity_gap",
     "summarize_allocation",
     "train_model",
