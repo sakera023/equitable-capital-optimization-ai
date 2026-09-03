@@ -13,10 +13,11 @@
 
 ## Phase 2 — Stronger empirical methodology
 
-- [ ] Logistic-regression benchmark
-- [ ] Gradient-boosted tree benchmark
+- [x] Logistic-regression benchmark
+- [x] Gradient-boosted tree benchmark
 - [ ] Probability calibration
 - [ ] Repeated cross-validation
+- [x] Repeated stratified holdout benchmark
 - [ ] Confidence intervals
 - [ ] Threshold sensitivity curves
 - [ ] Allocation-policy sensitivity analysis
@@ -33,7 +34,7 @@
 ## Phase 4 — Public-data integration
 
 - [ ] U.S. Census Annual Business Survey aggregates
-- [ ] SBA public small-business/lending datasets
+- [x] SBA public small-business statistics integration
 - [ ] CDFI Fund public datasets
 - [ ] County/regional economic indicators
 - [ ] Geographic opportunity heat maps
