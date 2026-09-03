@@ -1,0 +1,5 @@
+model,roc_auc_mean,roc_auc_std,accuracy_mean,precision_mean,recall_mean,f1_mean,brier_mean
+Logistic Regression,0.6631,0.0282,0.6000,0.6414,0.5699,0.6031,0.2315
+Random Forest,0.6528,0.0227,0.6123,0.6351,0.6457,0.6401,0.2328
+Extra Trees,0.6235,0.0231,0.5968,0.6270,0.6029,0.6141,0.2391
+HistGradientBoosting,0.6064,0.0133,0.5840,0.6046,0.6407,0.6219,0.2789
