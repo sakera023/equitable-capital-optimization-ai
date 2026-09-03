@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented here.
 
+## [0.4.0] - 2026-09-03
+
+### Added
+
+- three documented synthetic case studies covering rural, metropolitan, and growth-stage capital-access scenarios;
+- expanded academic citation guidance with BibTeX, CFF, CodeMeta, Google Scholar, and publication links;
+- external adoption guide and research/adoption issue template;
+- public-data contribution template and community conduct guidance;
+- public contribution issues for Census data, county mapping, calibration, and verified use feedback;
+- automated GitHub release preparation for version 0.4.0.
+
+### Changed
+
+- package and citation metadata advanced to version 0.4.0;
+- contribution guidance emphasizes reproducible, verifiable external use.
+
 ## [0.3.0] - 2026-09-03
 
 ### Added
