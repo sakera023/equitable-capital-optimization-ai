@@ -72,6 +72,37 @@ See [Architecture](docs/ARCHITECTURE.md) and [Methodology](docs/METHODOLOGY.md).
 - Automated tests and linting in GitHub Actions
 - Model card, citation metadata, contribution guide, and security policy
 
+## Python package
+
+The reusable research code lives in the `equitable_capital` Python package.
+
+After a release is published to PyPI, install it with:
+
+```bash
+pip install equitable-capital-optimization-ai
+```
+
+Example:
+
+```python
+from equitable_capital import (
+    allocate_capital,
+    fairness_audit,
+    generate_synthetic_startups,
+    train_model,
+)
+
+data = generate_synthetic_startups()
+result = train_model(data)
+audit = fairness_audit(data)
+```
+
+For local development, install the repository in editable mode:
+
+```bash
+pip install -e ".[dev]"
+```
+
 ## Quick start
 
 ```bash
