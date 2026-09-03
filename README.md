@@ -83,6 +83,7 @@ See [Architecture](docs/ARCHITECTURE.md) and [Methodology](docs/METHODOLOGY.md).
 - Reproducible synthetic U.S. small-business/startup data generation
 - Scikit-learn preprocessing and Random Forest classification pipeline
 - Holdout evaluation with ROC-AUC, accuracy, precision, recall, F1, and Brier score
+- Reproducible multi-model benchmark across Logistic Regression, Random Forest, Extra Trees, and HistGradientBoosting
 - Capital Readiness Score derived from predicted funding-success probability
 - Global feature-importance reporting
 - Applicant-level local sensitivity explanations
@@ -190,7 +191,13 @@ python -m pytest -q
 │       ├── data.py
 │       ├── explainability.py
 │       ├── fairness.py
-│       └── modeling.py
+│       ├── modeling.py
+│       ├── benchmark.py
+│       └── public_data.py
+├── scripts/
+│   └── run_benchmarks.py
+├── benchmarks/
+│   └── reference_summary.csv
 ├── tests/
 ├── examples/
 │   ├── 01_capital_readiness.ipynb
@@ -232,6 +239,26 @@ they are **not mixed into the synthetic applicant-level model**.
 
 See [Public U.S. Data Layer](docs/PUBLIC_DATA.md) for provenance and research-use notes.
 
+## Model benchmark
+
+A reproducible five-split benchmark compares four model families under a common
+preprocessing and evaluation protocol.
+
+Reference findings on the synthetic research dataset:
+
+- **Logistic Regression** produced the strongest mean ROC-AUC and lowest Brier score.
+- **Random Forest** produced the strongest mean accuracy, recall, and F1 at the 0.50 threshold.
+- More complex models did not automatically outperform the simpler baselines.
+
+See the full [Model Benchmark Report](docs/BENCHMARKS.md) and the machine-readable
+[reference results](benchmarks/reference_summary.csv).
+
+Run the benchmark locally with:
+
+```bash
+python scripts/run_benchmarks.py
+```
+
 ## Model evaluation
 
 The application reports ROC-AUC, accuracy, precision, recall, F1 score, and Brier score.
@@ -254,8 +281,8 @@ outputs. CI runs on every push and pull request.
 
 ## Research roadmap
 
-Planned extensions include gradient-boosted model benchmarks, probability calibration,
-SHAP, temporal/geographic validation, county-level opportunity maps, Census and CDFI
+Planned extensions include probability calibration, SHAP, repeated cross-validation,
+temporal/geographic validation, county-level opportunity maps, Census and CDFI
 public-data integrations, constrained optimization, and uncertainty analysis.
 
 See [Research Roadmap](docs/RESEARCH_ROADMAP.md).
