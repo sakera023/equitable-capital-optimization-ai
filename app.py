@@ -6,6 +6,13 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+PUBLICATION_URL = (
+    "https://www.researchgate.net/publication/"
+    "410866072_An_AI-Powered_Framework_for_Equitable_Capital_Optimization_"
+    "Leveraging_Predictive_Intelligence_to_Empower_Underserved_"
+    "Entrepreneurial_Ecosystems_in_the_US"
+)
+
 from equitable_capital import (
     allocate_capital,
     explain_applicant,
@@ -49,7 +56,7 @@ with link_pypi:
 with link_publication:
     st.link_button(
         "Related Publication",
-        "https://www.researchgate.net/publication/410866072_An_AI-Powered_Framework_for_Equitable_Capital_Optimization_Leveraging_Predictive_Intelligence_to_Empower_Underserved_Entrepreneurial_Ecosystems_in_the_US",
+        PUBLICATION_URL,
         use_container_width=True,
     )
 
