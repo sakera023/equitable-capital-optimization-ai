@@ -11,7 +11,9 @@ All notable changes to this project are documented here.
 - runtime access to SBA metropolitan-area small-business statistics;
 - public-data source documentation and provenance metadata;
 - tests for public-data resource discovery;
-- reproducible Jupyter examples for capital readiness, fairness auditing, capital allocation, and SBA public-data context.
+- reproducible Jupyter examples for capital readiness, fairness auditing, capital allocation, and SBA public-data context;
+- reproducible four-model benchmark with repeated stratified holdouts;
+- benchmark report, reference metrics, runner script, and CI coverage.
 
 ### Changed
 
