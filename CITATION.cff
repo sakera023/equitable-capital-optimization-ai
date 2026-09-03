@@ -1,19 +1,24 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it using the metadata below."
+message: "If you use this software, please cite the software and, when relevant, the associated research publication."
 title: "Equitable Capital Optimization AI"
 type: software
+abstract: "A reproducible research package and interactive application for synthetic capital-readiness modeling, fairness auditing, explainable AI, public U.S. small-business context, geographic visualization, and equity-aware capital-allocation simulation."
 authors:
   - family-names: "Begum"
     given-names: "Sakera"
-version: "0.2.0"
+version: "0.4.0"
 date-released: "2026-09-03"
 license: "MIT"
 repository-code: "https://github.com/sakera023/equitable-capital-optimization-ai"
-url: "https://github.com/sakera023/equitable-capital-optimization-ai"
+url: "https://equitable-capital-ai-sakera.streamlit.app"
 keywords:
   - machine learning
   - equitable capital
   - entrepreneurship
+  - small business
   - explainable AI
   - fairness
   - capital allocation
+  - predictive analytics
+  - responsible AI
+  - geographic visualization
