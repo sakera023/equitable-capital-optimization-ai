@@ -1,8 +1,9 @@
 # Equitable Capital Optimization AI
 
 [![CI](https://github.com/sakera023/equitable-capital-optimization-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/sakera023/equitable-capital-optimization-ai/actions/workflows/ci.yml)
+[![Live App](https://img.shields.io/badge/Live%20App-Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://equitable-capital-ai-sakera.streamlit.app)
+[![PyPI](https://img.shields.io/pypi/v/equitable-capital-optimization-ai.svg)](https://pypi.org/project/equitable-capital-optimization-ai/)
 ![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 A reproducible research prototype for **predictive capital-readiness analysis, model
@@ -16,6 +17,14 @@ The project is inspired by:
 
 Related publication:
 [ResearchGate](https://www.researchgate.net/publication/410866072_An_AI-Powered_Framework_for_Equitable_Capital_Optimization_Leveraging_Predictive_Intelligence_to_Empower_Underserved_Entrepreneurial_Ecosystems_in_the_US)
+
+## Live demo
+
+**Public research dashboard:** [Launch the Streamlit application](https://equitable-capital-ai-sakera.streamlit.app)
+
+The live application provides an interactive demonstration of capital-readiness scoring,
+local model explanation, fairness auditing, and equity-aware allocation simulation using
+reproducible synthetic business data. No login or API key is required.
 
 ## Why this project exists
 
