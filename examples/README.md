@@ -9,6 +9,7 @@ capabilities in **Equitable Capital Optimization AI**.
 | [02 Fairness Audit](02_fairness_audit.ipynb) | Compare model outcomes across structural-access contexts and test multiple selection thresholds. |
 | [03 Equitable Allocation](03_equitable_allocation.ipynb) | Compare efficiency-only and equity-aware capital-allocation scenarios. |
 | [04 Public U.S. Data Context](04_public_us_data_context.ipynb) | Discover and load official SBA state or metropolitan small-business workbooks. |
+| [05 Geographic Visualization](05_geographic_visualization.ipynb) | Create U.S. state choropleths from synthetic research indicators and interpret geographic patterns responsibly. |
 
 ## Run locally
 
