@@ -3,6 +3,7 @@
 [![CI](https://github.com/sakera023/equitable-capital-optimization-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/sakera023/equitable-capital-optimization-ai/actions/workflows/ci.yml)
 [![Live App](https://img.shields.io/badge/Live%20App-Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://equitable-capital-ai-sakera.streamlit.app)
 [![PyPI](https://img.shields.io/pypi/v/equitable-capital-optimization-ai.svg)](https://pypi.org/project/equitable-capital-optimization-ai/)
+[![GitHub Release](https://img.shields.io/github/v/release/sakera023/equitable-capital-optimization-ai)](https://github.com/sakera023/equitable-capital-optimization-ai/releases/latest)
 [![Citation](https://img.shields.io/badge/Citation-CFF-blue)](CITATION.md)
 [![Google Scholar](https://img.shields.io/badge/Google%20Scholar-Profile-4285F4?logo=googlescholar&logoColor=white)](https://scholar.google.com/citations?user=D4t4wxAAAAAJ)
 ![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
@@ -19,6 +20,20 @@ The project is inspired by:
 
 Related publication:
 [ResearchGate](https://www.researchgate.net/publication/410866072_An_AI-Powered_Framework_for_Equitable_Capital_Optimization_Leveraging_Predictive_Intelligence_to_Empower_Underserved_Entrepreneurial_Ecosystems_in_the_US)
+
+## Latest release
+
+**v0.4.0 — Research & Adoption Release** is available as a real GitHub release and as a
+versioned Python package.
+
+- [GitHub Release v0.4.0](https://github.com/sakera023/equitable-capital-optimization-ai/releases/tag/v0.4.0)
+- [PyPI package](https://pypi.org/project/equitable-capital-optimization-ai/)
+
+Install the released version with:
+
+```bash
+pip install equitable-capital-optimization-ai==0.4.0
+```
 
 ## Live demo
 
