@@ -1,6 +1,5 @@
 import json
 
-
 NOTEBOOKS = [
     "examples/01_capital_readiness.ipynb",
     "examples/02_fairness_audit.ipynb",
