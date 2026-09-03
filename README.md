@@ -91,6 +91,7 @@ See [Architecture](docs/ARCHITECTURE.md) and [Methodology](docs/METHODOLOGY.md).
 - Efficiency-only and equity-aware capital-allocation simulation
 - Interactive Streamlit research dashboard
 - Live browser for official SBA state and metropolitan small-business datasets
+- Interactive U.S. state choropleths for synthetic research indicators and official SBA state measures
 - Automated tests and linting in GitHub Actions
 - Model card, citation metadata, contribution guide, and security policy
 
@@ -127,13 +128,14 @@ pip install -e ".[dev]"
 
 ## Reproducible examples
 
-The repository includes four Jupyter notebooks that walk through the research workflow
-from prediction to fairness, allocation, and official U.S. public-data context:
+The repository includes five Jupyter notebooks that walk through the research workflow
+from prediction to fairness, allocation, public U.S. data, and geographic visualization:
 
 1. [Capital Readiness Analysis](examples/01_capital_readiness.ipynb)
 2. [Fairness and Opportunity Audit](examples/02_fairness_audit.ipynb)
 3. [Equity-Aware Capital Allocation](examples/03_equitable_allocation.ipynb)
 4. [Official U.S. Small-Business Data Context](examples/04_public_us_data_context.ipynb)
+5. [Geographic Visualization](examples/05_geographic_visualization.ipynb)
 
 See the [examples guide](examples/README.md) for local setup and research-use notes.
 
@@ -193,6 +195,7 @@ python -m pytest -q
 │       ├── fairness.py
 │       ├── modeling.py
 │       ├── benchmark.py
+│       ├── geographic.py
 │       └── public_data.py
 ├── scripts/
 │   └── run_benchmarks.py
@@ -203,7 +206,8 @@ python -m pytest -q
 │   ├── 01_capital_readiness.ipynb
 │   ├── 02_fairness_audit.ipynb
 │   ├── 03_equitable_allocation.ipynb
-│   └── 04_public_us_data_context.ipynb
+│   ├── 04_public_us_data_context.ipynb
+│   └── 05_geographic_visualization.ipynb
 ├── docs/
 ├── .github/
 ├── CITATION.cff
@@ -238,6 +242,20 @@ copy. Public aggregate statistics are displayed for geographic and economic cont
 they are **not mixed into the synthetic applicant-level model**.
 
 See [Public U.S. Data Layer](docs/PUBLIC_DATA.md) for provenance and research-use notes.
+
+## Geographic visualization
+
+The live dashboard includes a dedicated **Geographic Insights** tab with interactive
+U.S. state choropleths for synthetic research indicators such as average Capital
+Readiness Score, Structural Barrier Index, requested capital, predicted success, and
+synthetic business count.
+
+When the official SBA state workbook is loaded, the **U.S. Public Data** tab can also
+detect state-level numeric fields and render an official-data choropleth for the selected
+measure.
+
+See [Geographic Visualization](docs/GEOGRAPHIC_VISUALIZATION.md) for methodology and
+interpretation limits.
 
 ## Model benchmark
 
