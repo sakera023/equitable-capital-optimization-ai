@@ -1,6 +1,7 @@
 import pandas as pd
 import pytest
 
+from equitable_capital import generate_synthetic_startups, train_model
 from equitable_capital.geographic import (
     detect_state_column,
     normalize_state_abbreviation,
@@ -8,7 +9,6 @@ from equitable_capital.geographic import (
     public_state_metric_options,
     summarize_synthetic_states,
 )
-from equitable_capital import generate_synthetic_startups, train_model
 
 
 def test_state_normalization_supports_names_and_codes():
