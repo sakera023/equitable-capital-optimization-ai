@@ -33,6 +33,7 @@ from .config import (
 )
 from .data import generate_synthetic_startups
 
+BENCHMARK_PROTOCOL_VERSION = "1.0"
 DEFAULT_BENCHMARK_SPLIT_SEEDS = (42, 43, 44, 45, 46)
 
 
