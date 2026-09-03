@@ -1,0 +1,38 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "Equitable Capital Optimization AI",
+  "version": "0.4.0",
+  "datePublished": "2026-09-03",
+  "description": "Reproducible research software for synthetic capital-readiness modeling, fairness auditing, explainable AI, public U.S. small-business context, geographic visualization, and equity-aware capital allocation.",
+  "codeRepository": "https://github.com/sakera023/equitable-capital-optimization-ai",
+  "issueTracker": "https://github.com/sakera023/equitable-capital-optimization-ai/issues",
+  "license": "https://spdx.org/licenses/MIT.html",
+  "programmingLanguage": "Python",
+  "runtimePlatform": "Python 3.11+",
+  "applicationCategory": "Research Software",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Sakera",
+      "familyName": "Begum"
+    }
+  ],
+  "keywords": [
+    "machine learning",
+    "predictive analytics",
+    "equitable capital",
+    "entrepreneurship",
+    "small business",
+    "fairness",
+    "explainable AI",
+    "responsible AI",
+    "geographic visualization"
+  ],
+  "relatedLink": [
+    "https://equitable-capital-ai-sakera.streamlit.app",
+    "https://pypi.org/project/equitable-capital-optimization-ai/",
+    "https://scholar.google.com/citations?user=D4t4wxAAAAAJ",
+    "https://www.researchgate.net/publication/410866072_An_AI-Powered_Framework_for_Equitable_Capital_Optimization_Leveraging_Predictive_Intelligence_to_Empower_Underserved_Entrepreneurial_Ecosystems_in_the_US"
+  ]
+}
