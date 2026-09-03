@@ -113,6 +113,18 @@ For local development, install the repository in editable mode:
 pip install -e ".[dev]"
 ```
 
+## Reproducible examples
+
+The repository includes four Jupyter notebooks that walk through the research workflow
+from prediction to fairness, allocation, and official U.S. public-data context:
+
+1. [Capital Readiness Analysis](examples/01_capital_readiness.ipynb)
+2. [Fairness and Opportunity Audit](examples/02_fairness_audit.ipynb)
+3. [Equity-Aware Capital Allocation](examples/03_equitable_allocation.ipynb)
+4. [Official U.S. Small-Business Data Context](examples/04_public_us_data_context.ipynb)
+
+See the [examples guide](examples/README.md) for local setup and research-use notes.
+
 ## Quick start
 
 ```bash
@@ -169,6 +181,11 @@ python -m pytest -q
 │       ├── fairness.py
 │       └── modeling.py
 ├── tests/
+├── examples/
+│   ├── 01_capital_readiness.ipynb
+│   ├── 02_fairness_audit.ipynb
+│   ├── 03_equitable_allocation.ipynb
+│   └── 04_public_us_data_context.ipynb
 ├── docs/
 ├── .github/
 ├── CITATION.cff
