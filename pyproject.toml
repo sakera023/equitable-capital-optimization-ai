@@ -1,22 +1,38 @@
 [build-system]
-requires = ["setuptools>=69"]
+requires = ["setuptools>=69", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "equitable-capital-optimization-ai"
 version = "0.2.0"
-description = "Research prototype for predictive and equitable capital-allocation analysis."
+description = "Research package for predictive capital-readiness analysis, fairness auditing, explainable AI, and equity-aware capital allocation."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [{ name = "Sakera Begum" }]
 keywords = [
+  "artificial-intelligence",
   "machine-learning",
+  "predictive-analytics",
   "entrepreneurship",
+  "small-business",
   "capital-allocation",
   "fairness",
+  "responsible-ai",
   "explainable-ai",
   "streamlit"
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Software Development :: Libraries :: Python Modules"
 ]
 dependencies = [
   "numpy>=1.26,<3",
@@ -28,12 +44,22 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+  "build>=1.2,<2",
   "pytest>=8,<10",
-  "ruff>=0.8,<1"
+  "ruff>=0.8,<1",
+  "twine>=5,<7"
 ]
+
+[project.urls]
+Homepage = "https://github.com/sakera023/equitable-capital-optimization-ai"
+Repository = "https://github.com/sakera023/equitable-capital-optimization-ai"
+Issues = "https://github.com/sakera023/equitable-capital-optimization-ai/issues"
+Documentation = "https://github.com/sakera023/equitable-capital-optimization-ai/tree/main/docs"
+Publication = "https://www.researchgate.net/publication/410866072_An_AI-Powered_Framework_for_Equitable_Capital_Optimization_Leveraging_Predictive_Intelligence_to_Empower_Underserved_Entrepreneurial_Ecosystems_in_the_US"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["equitable_capital*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
