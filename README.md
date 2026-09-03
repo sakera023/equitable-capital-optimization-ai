@@ -94,7 +94,7 @@ from equitable_capital import (
 
 data = generate_synthetic_startups()
 result = train_model(data)
-audit = fairness_audit(data)
+audit = fairness_audit(result.scored_data)
 ```
 
 For local development, install the repository in editable mode:
