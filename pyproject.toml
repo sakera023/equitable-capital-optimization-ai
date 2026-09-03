@@ -52,6 +52,7 @@ dev = [
 
 [project.urls]
 Homepage = "https://github.com/sakera023/equitable-capital-optimization-ai"
+Demo = "https://equitable-capital-ai-sakera.streamlit.app"
 Repository = "https://github.com/sakera023/equitable-capital-optimization-ai"
 Issues = "https://github.com/sakera023/equitable-capital-optimization-ai/issues"
 Documentation = "https://github.com/sakera023/equitable-capital-optimization-ai/tree/main/docs"
