@@ -1,67 +1,170 @@
 # Methodology
 
-## Research objective
+## 1. Research objective
 
-This software prototype operationalizes an AI-powered framework for studying equitable
-capital optimization in underserved U.S. entrepreneurial ecosystems.
+This prototype operationalizes four parts of an equitable-capital research workflow:
 
-It separates four analytical tasks:
+1. predictive capital-readiness modeling;
+2. applicant-level model explainability;
+3. structural-access and fairness auditing; and
+4. capital-allocation scenario simulation.
 
-1. Predictive capital-readiness modeling
-2. Applicant-level model explainability
-3. Structural-access and fairness auditing
-4. Capital-allocation scenario simulation
+The system is intentionally modular so each component can be evaluated or replaced
+without conflating prediction with policy choice.
 
-## Synthetic data
+## 2. Synthetic data
 
-The repository generates synthetic startup and small-business records so the full
-workflow can be reproduced without exposing private financial information.
+The repository generates reproducible synthetic startup and small-business records.
 
-Features include revenue, growth, cash runway, employees, years operating,
-debt-service coverage, digital adoption, market demand, management capacity,
-requested capital, industry, and state.
+Synthetic data is used because it:
 
-## Protected characteristics
+- avoids publishing private applicant information;
+- makes the repository self-contained;
+- supports deterministic tests; and
+- prevents the demonstration from implying that a real lender dataset has been validated.
 
-Race, ethnicity, gender, religion, disability, immigration status, and other protected
-personal characteristics are excluded from the predictive model.
+The synthetic distribution is illustrative rather than empirically representative.
 
-The structural barrier index is built from contextual indicators such as low-income
-area, rural area, limited finance access, and digital adoption. It is used for
-research auditing and allocation simulation rather than model training.
+## 3. Predictive features
 
-## Predictive model
+The model uses business-level operating and market characteristics:
 
-The baseline model is a Random Forest classifier in a scikit-learn pipeline.
-Categorical features are one-hot encoded and numeric features are standardized.
+- annual revenue;
+- revenue growth;
+- cash runway;
+- employee count;
+- years operating;
+- debt-service coverage;
+- digital adoption;
+- market demand;
+- management capacity;
+- requested capital;
+- state; and
+- industry.
 
-The dashboard reports holdout ROC-AUC and accuracy.
+The predictive model does not use race, ethnicity, gender, religion, disability,
+immigration status, or other protected personal traits.
 
-## Explainability
+## 4. Structural barrier index
 
-The prototype uses a transparent local sensitivity method. Each numeric feature is
-replaced with the dataset median and the change in predicted probability is measured.
-This is a directional contribution proxy, not a causal explanation.
+The demonstration index combines:
 
-## Fairness audit
+- low-income-area indicator;
+- limited-finance-access indicator;
+- rural-area indicator; and
+- inverse digital-adoption score.
 
-The audit compares selection rates and average scores between higher- and lower-barrier
-business contexts. These metrics are diagnostic and do not constitute a legal
-determination of discrimination or compliance.
+The index is reserved for post-model diagnostics and allocation simulation. It is not
+included in the predictive model's feature set.
 
-## Capital allocation
+This distinction is deliberate: predictive performance and policy prioritization are
+separate research questions.
 
-Two research scenarios are simulated:
+## 5. Predictive model
 
-- **Efficiency-only:** prioritizes expected success relative to requested capital.
-- **Equity-aware:** blends predicted success with structural-access context.
+The baseline model is a Random Forest classifier implemented through a scikit-learn
+Pipeline.
 
-The simulator is for academic and policy research only and must not be used for real
-underwriting, lending, investing, or eligibility decisions.
+Preprocessing:
 
-## Future empirical extension
+- numeric variables: standardization;
+- categorical variables: one-hot encoding.
 
-A publication-grade version could integrate public or aggregate data from the
-U.S. Census Bureau Annual Business Survey, SBA datasets, CDFI Fund data, and regional
-economic indicators, together with calibration, temporal validation, SHAP analysis,
-robustness testing, and constrained optimization.
+Training:
+
+- stratified 75/25 train/test split;
+- deterministic random seed;
+- balanced class weighting;
+- 300 trees;
+- bounded tree depth and minimum leaf size.
+
+## 6. Evaluation
+
+The holdout evaluation reports:
+
+- ROC-AUC;
+- accuracy;
+- precision;
+- recall;
+- F1 score; and
+- Brier score.
+
+Accuracy alone is not used because a single metric can obscure class imbalance,
+probability quality, or asymmetric error behavior.
+
+These metrics apply only to the synthetic demonstration.
+
+## 7. Explainability
+
+Applicant-level explanations use local sensitivity analysis:
+
+1. calculate the applicant's base predicted probability;
+2. replace one numeric feature with the synthetic reference median;
+3. recalculate probability; and
+4. report the difference as a directional contribution proxy.
+
+This method is intentionally transparent and lightweight. It is not a causal
+explanation.
+
+A future research version can add SHAP while preserving this simpler baseline for
+comparison.
+
+## 8. Fairness audit
+
+The audit compares:
+
+- selection rate;
+- average predicted probability;
+- average requested capital;
+- average readiness score; and
+- selection-rate ratio
+
+between higher- and lower-barrier structural contexts.
+
+The audit is descriptive and diagnostic. It is not a legal test and does not establish
+discrimination or regulatory compliance.
+
+## 9. Capital-allocation simulation
+
+Two scenarios are compared.
+
+### Efficiency-only
+
+Ranks applicants using predicted success relative to requested capital.
+
+### Equity-aware
+
+Combines predicted success with the structural barrier index and a small capital-size
+penalty.
+
+The equity weight is a policy-simulation parameter, not a learned model coefficient.
+
+## 10. Validation required before real-world use
+
+A publication-grade or operational study would require substantially more evidence,
+including:
+
+- representative real-world data;
+- clear outcome definitions;
+- temporal holdout validation;
+- geographic external validation;
+- probability calibration;
+- missing-data strategy;
+- uncertainty intervals;
+- subgroup robustness analysis;
+- sensitivity analysis;
+- independent replication;
+- privacy/governance review; and
+- applicable legal and regulatory review.
+
+## 11. Public-data extension
+
+Potential aggregate/public inputs include:
+
+- U.S. Census Bureau Annual Business Survey;
+- SBA public datasets;
+- CDFI Fund public datasets; and
+- regional economic indicators.
+
+Applicant-level financial data should only be introduced with appropriate permissions,
+privacy controls, governance, and documented data lineage.

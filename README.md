@@ -1,82 +1,199 @@
-# AI-Powered Equitable Capital Optimization
+# Equitable Capital Optimization AI
 
-A research-oriented Python and Streamlit prototype inspired by:
+[![CI](https://github.com/sakera023/equitable-capital-optimization-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/sakera023/equitable-capital-optimization-ai/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-**An AI-Powered Framework for Equitable Capital Optimization: Leveraging Predictive Intelligence to Empower Underserved Entrepreneurial Ecosystems in the U.S.**
+A reproducible research prototype for **predictive capital-readiness analysis, model
+explainability, fairness auditing, and equity-aware capital-allocation simulation** for
+underserved U.S. entrepreneurial ecosystems.
 
-The project demonstrates how predictive analytics can be combined with explainability, structural-access auditing, and funding-allocation simulation to study capital access for underserved entrepreneurial ecosystems.
+The project is inspired by:
 
-## Core capabilities
+> **An AI-Powered Framework for Equitable Capital Optimization: Leveraging Predictive
+> Intelligence to Empower Underserved Entrepreneurial Ecosystems in the U.S.**
 
-- Generates reproducible synthetic U.S. startup and small-business records
-- Trains a Random Forest funding-success model
-- Produces a Capital Readiness Score
-- Provides applicant-level model sensitivity explanations
-- Audits outcomes across higher- and lower-barrier business contexts
-- Compares efficiency-only and equity-aware capital allocation scenarios
-- Presents results in an interactive Streamlit dashboard
+Related publication:
+[ResearchGate](https://www.researchgate.net/publication/410866072_An_AI-Powered_Framework_for_Equitable_Capital_Optimization_Leveraging_Predictive_Intelligence_to_Empower_Underserved_Entrepreneurial_Ecosystems_in_the_US)
 
-## Responsible use
+## Why this project exists
+
+Access to capital is not only a prediction problem. It is also an allocation,
+transparency, and measurement problem. This repository separates those concerns into
+four independently testable components:
+
+| Component | Purpose |
+| --- | --- |
+| Predictive modeling | Estimate funding-success probability from business and market features |
+| Explainability | Show how applicant-level features influence the model locally |
+| Fairness auditing | Compare outcomes across structural-access contexts |
+| Capital allocation | Compare efficiency-only and equity-aware funding scenarios |
+
+## Responsible-use boundary
 
 > **Research and educational use only.**
 >
-> This prototype must not be used to make real lending, credit, investment, employment, housing, insurance, benefits, or eligibility decisions.
+> This project must not be used to make real lending, credit, investment, employment,
+> housing, insurance, benefits, or eligibility decisions.
 
-The predictive model excludes protected personal characteristics. Structural/geographic indicators are used only for research auditing and allocation simulation.
+The predictive model intentionally excludes protected personal characteristics.
+Structural context indicators are used for research auditing and allocation simulation,
+not as protected-trait proxies for real-world underwriting.
 
-## Project files
+## Architecture
 
-```text
-equitable-capital-optimization-ai/
-├── app.py
-├── core.py
-├── requirements.txt
-├── .gitignore
-├── LICENSE
-├── docs/
-│   └── METHODOLOGY.md
-└── tests/
-    └── test_core.py
+```mermaid
+flowchart LR
+    A[Synthetic Business Data] --> B[Feature Pipeline]
+    B --> C[Random Forest Model]
+    C --> D[Capital Readiness Score]
+    C --> E[Local Explanation]
+    D --> F[Fairness Audit]
+    D --> G[Allocation Simulator]
+    F --> H[Research Dashboard]
+    G --> H
+    E --> H
 ```
 
-## Run locally
+See [Architecture](docs/ARCHITECTURE.md) and [Methodology](docs/METHODOLOGY.md).
+
+## Key capabilities
+
+- Reproducible synthetic U.S. small-business/startup data generation
+- Scikit-learn preprocessing and Random Forest classification pipeline
+- Holdout evaluation with ROC-AUC, accuracy, precision, recall, F1, and Brier score
+- Capital Readiness Score derived from predicted funding-success probability
+- Global feature-importance reporting
+- Applicant-level local sensitivity explanations
+- Structural-context fairness audit and selection-rate comparison
+- Efficiency-only and equity-aware capital-allocation simulation
+- Interactive Streamlit research dashboard
+- Automated tests and linting in GitHub Actions
+- Model card, citation metadata, contribution guide, and security policy
+
+## Quick start
 
 ```bash
+git clone https://github.com/sakera023/equitable-capital-optimization-ai.git
+cd equitable-capital-optimization-ai
 python -m venv .venv
+```
+
+Activate the environment.
+
+**Windows**
+
+```bash
+.venv\Scripts\activate
+```
+
+**macOS/Linux**
+
+```bash
+source .venv/bin/activate
+```
+
+Install and run:
+
+```bash
 pip install -r requirements.txt
 streamlit run app.py
 ```
 
-Run tests:
+Development checks:
 
 ```bash
-pytest -q
+pip install -r requirements-dev.txt
+ruff check src tests app.py
+python -m pytest -q
 ```
 
-## Model inputs
+## Repository structure
 
-The predictive prototype uses business-level characteristics including revenue, revenue growth, cash runway, employee count, years operating, debt-service coverage, digital adoption, market demand, management capacity, requested capital, industry, and state.
+```text
+.
+├── app.py
+├── pyproject.toml
+├── requirements.txt
+├── requirements-dev.txt
+├── Makefile
+├── src/
+│   └── equitable_capital/
+│       ├── __init__.py
+│       ├── allocation.py
+│       ├── config.py
+│       ├── data.py
+│       ├── explainability.py
+│       ├── fairness.py
+│       └── modeling.py
+├── tests/
+├── docs/
+├── .github/
+├── CITATION.cff
+├── CONTRIBUTING.md
+├── SECURITY.md
+├── CHANGELOG.md
+└── LICENSE
+```
 
-It does **not** use race, ethnicity, gender, religion, disability, immigration status, or other protected personal traits.
+## Data design
 
-## Research extensions
+The repository uses **synthetic data by default**. This avoids exposing private
+financial records, makes the project reproducible, and prevents the demonstration from
+implying real-world predictive validity.
 
-Future versions can add:
+Predictive features include revenue, growth, cash runway, employees, operating history,
+debt-service coverage, digital adoption, market demand, management capacity, requested
+capital, industry, and state.
 
-- XGBoost / LightGBM benchmark models
-- SHAP explainability
-- probability calibration
-- U.S. Census Annual Business Survey data
-- SBA and CDFI public datasets
-- county-level capital-access maps
-- constrained optimization
-- robustness and bias stress testing
-- model cards and dataset documentation
+## Model evaluation
 
-## Author
+The application reports ROC-AUC, accuracy, precision, recall, F1 score, and Brier score.
+These metrics evaluate the synthetic demonstration only.
 
-Sakera Begum
+## Fairness and equity analysis
+
+A **structural barrier index** is built from contextual variables such as low-income
+area, rural area, limited finance access, and digital adoption.
+
+The index is reserved for post-model fairness diagnostics and research simulation of
+equity-aware allocation policies. It is not included in the predictive training
+features.
+
+## Reproducibility
+
+The synthetic data generator and model pipeline use explicit random seeds. Tests verify
+data ranges, prediction bounds, allocation-budget constraints, and fairness-audit
+outputs. CI runs on every push and pull request.
+
+## Research roadmap
+
+Planned extensions include gradient-boosted model benchmarks, probability calibration,
+SHAP, temporal/geographic validation, county-level opportunity maps, Census/SBA/CDFI
+public-data integrations, constrained optimization, and uncertainty analysis.
+
+See [Research Roadmap](docs/RESEARCH_ROADMAP.md).
+
+## Citation
+
+If you use the software, cite the repository metadata in [CITATION.cff](CITATION.cff).
+If you use the associated research concept, cite the publication separately and clearly
+distinguish research findings from this software prototype.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Security
+
+Do not publish secrets, private financial information, or real applicant records in
+issues or pull requests. See [SECURITY.md](SECURITY.md).
 
 ## License
 
-MIT
+MIT License. See [LICENSE](LICENSE).
+
+## Maintainer
+
+**Sakera Begum**
