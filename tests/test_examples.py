@@ -5,11 +5,12 @@ NOTEBOOKS = [
     "examples/02_fairness_audit.ipynb",
     "examples/03_equitable_allocation.ipynb",
     "examples/04_public_us_data_context.ipynb",
+    "examples/05_geographic_visualization.ipynb",
 ]
 
 
 def test_example_notebooks_are_valid_notebook_documents():
-    assert len(NOTEBOOKS) >= 4
+    assert len(NOTEBOOKS) >= 5
 
     for notebook_path in NOTEBOOKS:
         with open(notebook_path, encoding="utf-8") as notebook_file:
