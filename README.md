@@ -3,6 +3,8 @@
 [![CI](https://github.com/sakera023/equitable-capital-optimization-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/sakera023/equitable-capital-optimization-ai/actions/workflows/ci.yml)
 [![Live App](https://img.shields.io/badge/Live%20App-Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://equitable-capital-ai-sakera.streamlit.app)
 [![PyPI](https://img.shields.io/pypi/v/equitable-capital-optimization-ai.svg)](https://pypi.org/project/equitable-capital-optimization-ai/)
+[![Citation](https://img.shields.io/badge/Citation-CFF-blue)](CITATION.md)
+[![Google Scholar](https://img.shields.io/badge/Google%20Scholar-Profile-4285F4?logo=googlescholar&logoColor=white)](https://scholar.google.com/citations?user=D4t4wxAAAAAJ)
 ![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
@@ -211,6 +213,9 @@ python -m pytest -q
 ├── docs/
 ├── .github/
 ├── CITATION.cff
+├── CITATION.md
+├── codemeta.json
+├── ADOPTION.md
 ├── CONTRIBUTING.md
 ├── SECURITY.md
 ├── CHANGELOG.md
@@ -242,6 +247,21 @@ copy. Public aggregate statistics are displayed for geographic and economic cont
 they are **not mixed into the synthetic applicant-level model**.
 
 See [Public U.S. Data Layer](docs/PUBLIC_DATA.md) for provenance and research-use notes.
+
+## Documented case studies
+
+Three documented synthetic case studies show how the platform can be used as a research
+workflow rather than only as a software demo:
+
+1. [Rural Small-Business Capital Access](docs/case-studies/01_rural_small_business.md)
+2. [Low-Income Metropolitan Entrepreneurship](docs/case-studies/02_low_income_metro.md)
+3. [Growth-Stage Small Business With Constrained Capital](docs/case-studies/03_growth_stage_business.md)
+
+Each case study connects capital-readiness analysis, explainability, fairness diagnostics,
+geographic/public-data context, and allocation scenarios while clearly separating
+synthetic applicant-level outputs from official aggregate statistics.
+
+See the [case study index](docs/case-studies/README.md).
 
 ## Geographic visualization
 
@@ -305,11 +325,37 @@ public-data integrations, constrained optimization, and uncertainty analysis.
 
 See [Research Roadmap](docs/RESEARCH_ROADMAP.md).
 
+## Academic citation and research metadata
+
+The repository includes:
+
+- [CITATION.cff](CITATION.cff) for GitHub's **Cite this repository** feature;
+- [CITATION.md](CITATION.md) with a recommended software citation and BibTeX;
+- [codemeta.json](codemeta.json) for machine-readable research-software metadata;
+- links to the associated publication and Google Scholar profile; and
+- versioned package metadata on PyPI.
+
+No DOI is claimed unless and until a verified DOI is minted by a research-software
+archive.
+
 ## Citation
 
 If you use the software, cite the repository metadata in [CITATION.cff](CITATION.cff).
 If you use the associated research concept, cite the publication separately and clearly
 distinguish research findings from this software prototype.
+
+## External use and contribution
+
+Genuine outside use is encouraged and documented transparently.
+
+See [ADOPTION.md](ADOPTION.md) for ways to use the software, report research or teaching
+use, and provide verifiable feedback. The repository also includes contribution-oriented
+issues for public-data integration, county-level mapping, calibration research, and
+verified adoption feedback.
+
+External-use claims should be based on real activity such as citations, forks with
+substantive work, pull requests, reproducible issue reports, teaching use, or documented
+organizational testing—not artificial stars or fabricated testimonials.
 
 ## Contributing
 
