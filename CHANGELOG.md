@@ -13,7 +13,10 @@ All notable changes to this project are documented here.
 - tests for public-data resource discovery;
 - reproducible Jupyter examples for capital readiness, fairness auditing, capital allocation, and SBA public-data context;
 - reproducible four-model benchmark with repeated stratified holdouts;
-- benchmark report, reference metrics, runner script, and CI coverage.
+- benchmark report, reference metrics, runner script, and CI coverage;
+- interactive state-level geographic visualization for synthetic indicators and official SBA state measures;
+- reusable U.S. state normalization and map-preparation helpers;
+- geographic visualization documentation and example notebook.
 
 ### Changed
 
