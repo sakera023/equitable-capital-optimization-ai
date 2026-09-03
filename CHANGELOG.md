@@ -10,7 +10,8 @@ All notable changes to this project are documented here.
 - runtime access to SBA Office of Advocacy state small-business statistics;
 - runtime access to SBA metropolitan-area small-business statistics;
 - public-data source documentation and provenance metadata;
-- tests for public-data resource discovery.
+- tests for public-data resource discovery;
+- reproducible Jupyter examples for capital readiness, fairness auditing, capital allocation, and SBA public-data context.
 
 ### Changed
 
