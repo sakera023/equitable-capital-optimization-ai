@@ -2,6 +2,21 @@
 
 All notable changes to this project are documented here.
 
+## [0.3.0] - 2026-09-03
+
+### Added
+
+- live public U.S. data browser in the Streamlit application;
+- runtime access to SBA Office of Advocacy state small-business statistics;
+- runtime access to SBA metropolitan-area small-business statistics;
+- public-data source documentation and provenance metadata;
+- tests for public-data resource discovery.
+
+### Changed
+
+- added `openpyxl` for reading official SBA Excel workbooks;
+- kept public aggregate data separate from the synthetic predictive model.
+
 ## [0.2.0] - 2026-09-03
 
 ### Added
