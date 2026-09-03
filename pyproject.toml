@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "equitable-capital-optimization-ai"
-version = "0.3.0"
+version = "0.4.0"
 description = "Research package for predictive capital-readiness analysis, fairness auditing, explainable AI, and equity-aware capital allocation."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -58,6 +58,8 @@ Repository = "https://github.com/sakera023/equitable-capital-optimization-ai"
 Issues = "https://github.com/sakera023/equitable-capital-optimization-ai/issues"
 Documentation = "https://github.com/sakera023/equitable-capital-optimization-ai/tree/main/docs"
 Publication = "https://www.researchgate.net/publication/410866072_An_AI-Powered_Framework_for_Equitable_Capital_Optimization_Leveraging_Predictive_Intelligence_to_Empower_Underserved_Entrepreneurial_Ecosystems_in_the_US"
+Google Scholar = "https://scholar.google.com/citations?user=D4t4wxAAAAAJ"
+Citation = "https://github.com/sakera023/equitable-capital-optimization-ai/blob/main/CITATION.md"
 
 [tool.setuptools.packages.find]
 where = ["src"]
