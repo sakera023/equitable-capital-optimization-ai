@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "equitable-capital-optimization-ai"
-version = "0.2.0"
+version = "0.3.0"
 description = "Research package for predictive capital-readiness analysis, fairness auditing, explainable AI, and equity-aware capital allocation."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -36,6 +36,7 @@ classifiers = [
 ]
 dependencies = [
   "numpy>=1.26,<3",
+  "openpyxl>=3.1,<4",
   "pandas>=2.1,<4",
   "plotly>=5.20,<8",
   "scikit-learn>=1.4,<2",
