@@ -16,7 +16,7 @@ pip install -r requirements-dev.txt
 Run:
 
 ```bash
-ruff check src tests app.py
+ruff check src tests scripts app.py
 python -m pytest -q
 ```
 
@@ -39,3 +39,16 @@ Do not submit private, proprietary, or personally identifiable applicant data.
 
 Public-data integrations should document source, license/terms, retrieval date, field
 definitions, transformation steps, and known limitations.
+
+## Community and external use
+
+Before contributing, review [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and
+[ADOPTION.md](ADOPTION.md).
+
+External contributors are especially welcome to work on public-data integrations,
+geographic validation, calibration, reproducibility, documentation, and independent
+testing. If your work uses the software in a public paper, repository, course, or report,
+consider sharing a verifiable link through the Research / Adoption Report issue template.
+
+Please do not create artificial stars, fabricated testimonials, or unsupported claims of
+impact.
