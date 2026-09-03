@@ -26,24 +26,24 @@ src/equitable_capital/
 
 ## Data flow
 
-```mermaid
-sequenceDiagram
-    participant D as Synthetic Data
-    participant M as Predictive Model
-    participant E as Explainability
-    participant F as Fairness Audit
-    participant A as Allocation Engine
-    participant U as Streamlit UI
-
-    D->>M: business and market features
-    M->>U: readiness scores + model metrics
-    M->>E: trained pipeline + applicant
-    E->>U: local sensitivity
-    M->>F: scored population
-    F->>U: context-level diagnostic metrics
-    M->>A: scored population
-    D->>A: structural context index
-    A->>U: scenario comparison
+```text
+Synthetic Data
+    |
+    v
+Predictive Model
+    |-----------------------> Streamlit UI
+    |                         (readiness scores + metrics)
+    |
+    +--> Explainability ----> Streamlit UI
+    |     (local sensitivity)
+    |
+    +--> Fairness Audit ----> Streamlit UI
+    |     (context diagnostics)
+    |
+    +--> Allocation Engine -> Streamlit UI
+          ^
+          |
+   Structural Context Index
 ```
 
 ## Boundary between prediction and allocation
