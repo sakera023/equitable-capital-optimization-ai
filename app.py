@@ -33,6 +33,26 @@ st.warning(
     "credit, lending, investment, or eligibility decisions."
 )
 
+link_github, link_pypi, link_publication = st.columns(3)
+with link_github:
+    st.link_button(
+        "GitHub Repository",
+        "https://github.com/sakera023/equitable-capital-optimization-ai",
+        use_container_width=True,
+    )
+with link_pypi:
+    st.link_button(
+        "Python Package (PyPI)",
+        "https://pypi.org/project/equitable-capital-optimization-ai/",
+        use_container_width=True,
+    )
+with link_publication:
+    st.link_button(
+        "Related Publication",
+        "https://www.researchgate.net/publication/410866072_An_AI-Powered_Framework_for_Equitable_Capital_Optimization_Leveraging_Predictive_Intelligence_to_Empower_Underserved_Entrepreneurial_Ecosystems_in_the_US",
+        use_container_width=True,
+    )
+
 
 @st.cache_data
 def load_data() -> pd.DataFrame:
