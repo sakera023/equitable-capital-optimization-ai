@@ -37,7 +37,8 @@
 - [x] SBA public small-business statistics integration
 - [ ] CDFI Fund public datasets
 - [ ] County/regional economic indicators
-- [ ] Geographic opportunity heat maps
+- [x] State-level geographic choropleths
+- [ ] County-level geographic opportunity heat maps
 
 ## Phase 5 — Research publication package
 
