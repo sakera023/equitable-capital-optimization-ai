@@ -48,4 +48,4 @@
 - [ ] Reproducible results notebook
 - [ ] Ablation study
 - [ ] Sensitivity appendix
-- [ ] Versioned release artifact
+- [x] Versioned release artifact
