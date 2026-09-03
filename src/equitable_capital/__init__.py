@@ -9,6 +9,11 @@ from .benchmark import (
 from .data import generate_synthetic_startups
 from .explainability import explain_applicant
 from .fairness import fairness_audit, opportunity_gap
+from .geographic import (
+    prepare_public_state_map,
+    public_state_metric_options,
+    summarize_synthetic_states,
+)
 from .modeling import (
     ModelResult,
     build_pipeline,
@@ -30,8 +35,11 @@ __all__ = [
     "global_feature_importance",
     "load_sba_public_workbook",
     "opportunity_gap",
+    "prepare_public_state_map",
+    "public_state_metric_options",
     "run_model_benchmark",
     "summarize_allocation",
+    "summarize_synthetic_states",
     "summarize_benchmark",
     "train_model",
 ]
