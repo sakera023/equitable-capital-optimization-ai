@@ -15,7 +15,10 @@ from equitable_capital import (
     global_feature_importance,
     load_sba_public_workbook,
     opportunity_gap,
+    prepare_public_state_map,
+    public_state_metric_options,
     summarize_allocation,
+    summarize_synthetic_states,
     train_model,
 )
 
@@ -104,6 +107,7 @@ with st.sidebar:
 tabs = st.tabs(
     [
         "Executive Dashboard",
+        "Geographic Insights",
         "Business Assessment",
         "Fairness Audit",
         "Capital Allocation",
@@ -147,6 +151,66 @@ with tabs[0]:
     )
 
 with tabs[1]:
+    st.subheader("Geographic Research View")
+    st.write(
+        "Explore state-level patterns in the synthetic research dataset. "
+        "These maps visualize model outputs and contextual indicators; they are "
+        "not measurements of real state economic performance."
+    )
+
+    state_geo = summarize_synthetic_states(scored)
+    geo_metric_options = {
+        "Average Capital Readiness": "avg_readiness",
+        "Average Structural Barrier Index": "avg_barrier_index",
+        "Average Requested Capital": "avg_requested_capital",
+        "Average Predicted Funding Success": "avg_predicted_success",
+        "Synthetic Business Count": "businesses",
+    }
+    geo_label = st.selectbox(
+        "Map metric",
+        list(geo_metric_options),
+        key="synthetic_geo_metric",
+    )
+    geo_metric = geo_metric_options[geo_label]
+
+    geo_fig = px.choropleth(
+        state_geo,
+        locations="state",
+        locationmode="USA-states",
+        color=geo_metric,
+        scope="usa",
+        hover_name="state_name",
+        hover_data={
+            "state": False,
+            "avg_readiness": ":.1f",
+            "avg_barrier_index": ":.3f",
+            "avg_requested_capital": ":,.0f",
+            "avg_predicted_success": ":.1%",
+            "businesses": ":,",
+        },
+        title=f"Synthetic State-Level Map — {geo_label}",
+        labels={
+            "avg_readiness": "Avg. readiness",
+            "avg_barrier_index": "Avg. barrier index",
+            "avg_requested_capital": "Avg. requested capital",
+            "avg_predicted_success": "Avg. predicted success",
+            "businesses": "Synthetic businesses",
+        },
+    )
+    geo_fig.update_layout(margin={"r": 0, "t": 55, "l": 0, "b": 0})
+    st.plotly_chart(geo_fig, use_container_width=True)
+    st.caption(
+        "Only states represented in the synthetic generator are colored. "
+        "Use the U.S. Public Data tab for official nationwide aggregate statistics."
+    )
+
+    st.dataframe(
+        state_geo.sort_values(geo_metric, ascending=False),
+        use_container_width=True,
+        hide_index=True,
+    )
+
+with tabs[2]:
     st.subheader("Synthetic Business Assessment")
     startup_id = st.selectbox("Select a synthetic business", scored["startup_id"].tolist())
     row = scored.loc[scored["startup_id"] == startup_id].iloc[0]
@@ -172,7 +236,7 @@ with tabs[1]:
         "This is a directional model-sensitivity explanation and does not establish causality."
     )
 
-with tabs[2]:
+with tabs[3]:
     st.subheader("Distributional Fairness / Opportunity Audit")
     audit = fairness_audit(scored, threshold=selection_threshold)
     gap = opportunity_gap(scored)
@@ -199,7 +263,7 @@ with tabs[2]:
         "discrimination, or compliance."
     )
 
-with tabs[3]:
+with tabs[4]:
     st.subheader("Capital Allocation Simulation")
     baseline, equitable = allocate_capital(
         scored, budget=budget, equity_weight=equity_weight
@@ -239,7 +303,7 @@ with tabs[3]:
         mime="text/csv",
     )
 
-with tabs[4]:
+with tabs[5]:
     st.subheader("Official U.S. Small Business Data")
     st.write(
         "Browse authoritative aggregate datasets from the U.S. Small Business "
@@ -301,6 +365,48 @@ with tabs[4]:
             f"Showing up to 2,000 rows from {len(public_frame):,} rows in this sheet."
         )
 
+        if selected_key == "sba_state_2025":
+            state_column, map_metrics = public_state_metric_options(public_frame)
+            if state_column and map_metrics:
+                st.subheader("Official SBA State Map")
+                public_metric = st.selectbox(
+                    "Choose a state-level measure to map",
+                    map_metrics,
+                    key=f"public_map_metric::{selected_key}::{public_sheet_name}",
+                )
+                try:
+                    public_map = prepare_public_state_map(
+                        public_frame,
+                        metric_column=public_metric,
+                        state_column=state_column,
+                    )
+                    public_fig = px.choropleth(
+                        public_map,
+                        locations="state",
+                        locationmode="USA-states",
+                        color="value",
+                        scope="usa",
+                        hover_name="state_name",
+                        title=f"Official SBA State Map — {public_metric}",
+                        labels={"value": public_metric},
+                    )
+                    public_fig.update_layout(
+                        margin={"r": 0, "t": 55, "l": 0, "b": 0}
+                    )
+                    st.plotly_chart(public_fig, use_container_width=True)
+                    st.caption(
+                        "Map values come from the selected official SBA worksheet. "
+                        "If a worksheet contains multiple rows per state, numeric "
+                        "values are averaged for visualization."
+                    )
+                except ValueError as exc:
+                    st.info(f"A state map is not available for this measure: {exc}")
+            else:
+                st.caption(
+                    "This worksheet does not contain a detectable state field and "
+                    "numeric measure suitable for mapping."
+                )
+
         csv_name = (
             f"{selected_key}_{public_sheet_name}"
             .lower()
@@ -319,7 +425,7 @@ with tabs[4]:
             "synthetic capital-readiness model."
         )
 
-with tabs[5]:
+with tabs[6]:
     st.subheader("Model Performance")
     metric_table = pd.DataFrame(
         [{"metric": name, "value": value} for name, value in result.metrics.items()]
