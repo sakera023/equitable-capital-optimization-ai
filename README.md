@@ -78,6 +78,7 @@ See [Architecture](docs/ARCHITECTURE.md) and [Methodology](docs/METHODOLOGY.md).
 - Structural-context fairness audit and selection-rate comparison
 - Efficiency-only and equity-aware capital-allocation simulation
 - Interactive Streamlit research dashboard
+- Live browser for official SBA state and metropolitan small-business datasets
 - Automated tests and linting in GitHub Actions
 - Model card, citation metadata, contribution guide, and security policy
 
@@ -179,13 +180,29 @@ python -m pytest -q
 
 ## Data design
 
-The repository uses **synthetic data by default**. This avoids exposing private
-financial records, makes the project reproducible, and prevents the demonstration from
-implying real-world predictive validity.
+The predictive model uses **synthetic business-level data by default**. This avoids
+exposing private financial records, makes the project reproducible, and prevents the
+demonstration from implying real-world applicant-level predictive validity.
 
 Predictive features include revenue, growth, cash runway, employees, operating history,
 debt-service coverage, digital adoption, market demand, management capacity, requested
 capital, industry, and state.
+
+### Official U.S. public-data layer
+
+The live application also provides a separate browser for authoritative aggregate
+small-business statistics from the **U.S. Small Business Administration Office of
+Advocacy**:
+
+- [State Small Business Statistics 2025](https://data.sba.gov/dataset/state-small-business-statistics-2025)
+- [Metropolitan Area Small Business Statistics 2025](https://data.sba.gov/dataset/metropolitan-area-small-business-statistics-2025)
+
+The application resolves the current official workbook through the SBA open-data CKAN
+catalog at runtime, so the repository does not need to store a stale government-data
+copy. Public aggregate statistics are displayed for geographic and economic context;
+they are **not mixed into the synthetic applicant-level model**.
+
+See [Public U.S. Data Layer](docs/PUBLIC_DATA.md) for provenance and research-use notes.
 
 ## Model evaluation
 
@@ -210,7 +227,7 @@ outputs. CI runs on every push and pull request.
 ## Research roadmap
 
 Planned extensions include gradient-boosted model benchmarks, probability calibration,
-SHAP, temporal/geographic validation, county-level opportunity maps, Census/SBA/CDFI
+SHAP, temporal/geographic validation, county-level opportunity maps, Census and CDFI
 public-data integrations, constrained optimization, and uncertainty analysis.
 
 See [Research Roadmap](docs/RESEARCH_ROADMAP.md).
