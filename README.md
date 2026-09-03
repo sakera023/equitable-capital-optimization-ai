@@ -44,14 +44,14 @@ not as protected-trait proxies for real-world underwriting.
 ## Architecture
 
 ```mermaid
-flowchart LR
-    A[Synthetic Business Data] --> B[Feature Pipeline]
-    B --> C[Random Forest Model]
-    C --> D[Capital Readiness Score]
-    C --> E[Local Explanation]
-    D --> F[Fairness Audit]
-    D --> G[Allocation Simulator]
-    F --> H[Research Dashboard]
+graph LR
+    A["Synthetic Business Data"] --> B["Feature Pipeline"]
+    B --> C["Random Forest Model"]
+    C --> D["Capital Readiness Score"]
+    C --> E["Local Explanation"]
+    D --> F["Fairness Audit"]
+    D --> G["Allocation Simulator"]
+    F --> H["Research Dashboard"]
     G --> H
     E --> H
 ```
