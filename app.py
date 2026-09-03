@@ -344,9 +344,9 @@ with tabs[5]:
 
         st.success("Official SBA data loaded.")
         st.markdown(
-            f"**Publisher:** U.S. Small Business Administration, Office of Advocacy  \\n"
-            f"**Dataset:** {metadata['package_title']}  \\n"
-            f"**Last catalog update:** {metadata['last_modified'] or 'Not reported'}  \\n"
+            f"**Publisher:** U.S. Small Business Administration, Office of Advocacy  \n"
+            f"**Dataset:** {metadata['package_title']}  \n"
+            f"**Last catalog update:** {metadata['last_modified'] or 'Not reported'}  \n"
             f"**License:** {metadata['license_title']}"
         )
 
