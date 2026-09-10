@@ -48,6 +48,13 @@ from .modeling import (
     train_model,
 )
 from .public_data import PUBLIC_DATASETS, get_sba_dataset_metadata, load_sba_public_workbook
+from .robustness import (
+    geographic_holdout_validation,
+    missing_data_stress_test,
+    permutation_feature_importance,
+    repeated_cross_validation,
+    threshold_sensitivity,
+)
 
 __all__ = [
     "ABS_2022_COMPANY_SUMMARY",
@@ -66,6 +73,7 @@ __all__ = [
     "explain_applicant",
     "fairness_audit",
     "generate_synthetic_startups",
+    "geographic_holdout_validation",
     "get_sba_dataset_metadata",
     "global_feature_importance",
     "load_abs_county_data",
@@ -74,9 +82,12 @@ __all__ = [
     "load_cdfi_certification_workbook",
     "load_county_geojson",
     "load_sba_public_workbook",
+    "missing_data_stress_test",
     "opportunity_gap",
+    "permutation_feature_importance",
     "prepare_public_state_map",
     "public_state_metric_options",
+    "repeated_cross_validation",
     "run_calibration_benchmark",
     "run_model_benchmark",
     "summarize_allocation",
@@ -86,6 +97,7 @@ __all__ = [
     "summarize_cdfi_by_state",
     "summarize_county_industry_concentration",
     "summarize_synthetic_states",
+    "threshold_sensitivity",
     "total_population_rows",
     "train_model",
 ]
