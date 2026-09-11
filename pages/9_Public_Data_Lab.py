@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import pandas as pd
 import plotly.express as px
 import streamlit as st
 
@@ -180,7 +179,10 @@ with abs_tab:
         "Query official Census ABS aggregate employer-firm data. Census currently requires "
         "an API key, which is used only for this request and is not stored by the app."
     )
-    st.link_button("Open official Census ABS documentation", ABS_2022_COMPANY_SUMMARY["documentation"])
+    st.link_button(
+        "Open official Census ABS documentation",
+        ABS_2022_COMPANY_SUMMARY["documentation"],
+    )
     api_key = st.text_input("Census API key", type="password", key="abs_api_key")
 
     if st.button("Load state-level ABS data", type="primary", key="load_abs"):
