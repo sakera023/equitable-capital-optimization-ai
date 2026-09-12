@@ -28,12 +28,22 @@ baseline behavior, trade-offs, and reproducibility before external validation is
   - precision;
   - recall;
   - F1;
-  - Brier score.
+- Brier score.
+- Probability-calibration diagnostics:
+  - uncalibrated probabilities;
+  - sigmoid calibration;
+  - isotonic calibration;
+  - reliability-curve bins;
+  - expected calibration error.
 
 The benchmark implementation is in
 [`src/equitable_capital/benchmark.py`](../src/equitable_capital/benchmark.py), and the
 command-line runner is
 [`scripts/run_benchmarks.py`](../scripts/run_benchmarks.py).
+
+The probability-calibration implementation is in
+[`src/equitable_capital/calibration.py`](../src/equitable_capital/calibration.py). The
+same command-line runner writes calibration outputs in addition to the model benchmark.
 
 ## Models compared
 
@@ -58,6 +68,63 @@ includes the sample standard deviation across the five runs.
 
 A machine-readable copy of these reference values is available in
 [`benchmarks/reference_summary.csv`](../benchmarks/reference_summary.csv).
+
+## Probability calibration analysis
+
+Probability calibration asks whether predicted probabilities behave like probabilities.
+For example, among synthetic businesses assigned a predicted success probability near
+0.70, roughly 70% should have the synthetic success label if the model is well calibrated.
+This matters because the application presents a probability-derived readiness score, not
+only a binary prediction.
+
+The calibration protocol uses the same five stratified holdout splits as the model
+benchmark. For each split and model family, it compares:
+
+| Method | Description |
+| --- | --- |
+| Uncalibrated | The model's native `predict_proba` output |
+| Sigmoid | Platt-style calibration learned by cross-validation on the training fold |
+| Isotonic | Non-parametric monotonic calibration learned by cross-validation on the training fold |
+
+The table below reports the mean across five repeated stratified holdouts.
+
+| Model | Method | ROC-AUC | Brier ↓ | ECE ↓ |
+| --- | --- | ---: | ---: | ---: |
+| Logistic Regression | Sigmoid | 0.664 ± 0.030 | **0.230** | 0.048 |
+| Logistic Regression | Isotonic | **0.666 ± 0.028** | 0.231 | 0.055 |
+| Logistic Regression | Uncalibrated | 0.663 ± 0.028 | 0.231 | 0.067 |
+| Random Forest | Sigmoid | **0.655 ± 0.023** | **0.233** | **0.046** |
+| Random Forest | Uncalibrated | 0.653 ± 0.023 | 0.233 | 0.048 |
+| Random Forest | Isotonic | 0.652 ± 0.028 | 0.235 | 0.058 |
+| Extra Trees | Isotonic | **0.630 ± 0.032** | **0.237** | 0.052 |
+| Extra Trees | Sigmoid | 0.627 ± 0.032 | 0.238 | **0.046** |
+| Extra Trees | Uncalibrated | 0.623 ± 0.023 | 0.239 | 0.056 |
+| HistGradientBoosting | Sigmoid | **0.627 ± 0.014** | **0.238** | **0.040** |
+| HistGradientBoosting | Isotonic | 0.623 ± 0.015 | 0.240 | 0.051 |
+| HistGradientBoosting | Uncalibrated | 0.606 ± 0.013 | 0.279 | 0.174 |
+
+Machine-readable outputs are available in:
+
+- [`benchmarks/calibration_summary.csv`](../benchmarks/calibration_summary.csv)
+- [`benchmarks/calibration_runs.csv`](../benchmarks/calibration_runs.csv)
+- [`benchmarks/reliability_curve.csv`](../benchmarks/reliability_curve.csv)
+
+Running `python scripts/run_benchmarks.py` also creates
+`benchmarks/reliability_diagram.html`, an interactive reliability diagram comparing
+observed synthetic success rates with mean predicted probabilities.
+
+## Calibration interpretation
+
+Sigmoid calibration modestly improved the Brier score for Logistic Regression and
+Random Forest, and materially improved the HistGradientBoosting probability quality in
+this synthetic experiment. Isotonic calibration helped some ranking metrics but also
+produced larger maximum bin-level calibration errors for several models, which is a useful
+reminder that a more flexible calibration method can overfit small validation folds.
+
+The main practical conclusion is conservative: calibration diagnostics should accompany
+any probability-derived readiness score. The results support treating Logistic Regression
+and Random Forest as useful probability baselines for this synthetic prototype, while
+flagging HistGradientBoosting's uncalibrated probabilities as weaker in this setting.
 
 ## Interpretation
 
@@ -120,6 +187,7 @@ Additional work required before stronger claims would include:
 - geographic holdout validation;
 - external public or appropriately governed private datasets;
 - probability calibration analysis;
+- subgroup calibration analysis;
 - subgroup stability analysis;
 - uncertainty estimation;
 - comparison with domain-specific operational baselines;

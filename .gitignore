@@ -7,3 +7,6 @@ __pycache__/
 .env.*
 .streamlit/secrets.toml
 .DS_Store
+benchmarks/latest_runs.csv
+benchmarks/latest_summary.csv
+benchmarks/reliability_diagram.html
