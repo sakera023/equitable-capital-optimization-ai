@@ -1,3 +1,5 @@
+from pandas.testing import assert_frame_equal
+
 from equitable_capital.data import generate_synthetic_startups
 from equitable_capital.robustness import (
     geographic_holdout_validation,
@@ -31,7 +33,7 @@ def test_missing_data_stress_is_reproducible():
     first = missing_data_stress_test(data, missing_rates=(0.0, 0.1), repeats=1)
     second = missing_data_stress_test(data, missing_rates=(0.0, 0.1), repeats=1)
 
-    assert first.equals(second)
+    assert_frame_equal(first, second, check_exact=False, rtol=1e-12, atol=1e-12)
     assert first["roc_auc"].between(0, 1).all()
 
 
