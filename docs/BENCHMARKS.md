@@ -28,7 +28,7 @@ baseline behavior, trade-offs, and reproducibility before external validation is
   - precision;
   - recall;
   - F1;
-- Brier score.
+  - Brier score.
 - Probability-calibration diagnostics:
   - uncalibrated probabilities;
   - sigmoid calibration;
