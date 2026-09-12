@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here.
 
+## Unreleased
+
+### Added
+
+- probability-calibration benchmark with uncalibrated, sigmoid, and isotonic methods;
+- reliability-curve outputs and reproducible calibration CSV artifacts;
+- tests for calibration curves, expected calibration error, and repeated holdout summaries.
+
 ## [0.4.0] - 2026-09-03
 
 ### Added

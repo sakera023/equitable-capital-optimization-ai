@@ -15,10 +15,11 @@
 
 - [x] Logistic-regression benchmark
 - [x] Gradient-boosted tree benchmark
-- [ ] Probability calibration
+- [x] Probability calibration
 - [ ] Repeated cross-validation
 - [x] Repeated stratified holdout benchmark
 - [ ] Confidence intervals
+- [ ] Subgroup calibration analysis
 - [ ] Threshold sensitivity curves
 - [ ] Allocation-policy sensitivity analysis
 
