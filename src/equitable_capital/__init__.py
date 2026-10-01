@@ -6,6 +6,13 @@ from .benchmark import (
     run_model_benchmark,
     summarize_benchmark,
 )
+from .calibration import (
+    CalibrationResult,
+    expected_calibration_error,
+    reliability_curve_frame,
+    run_calibration_benchmark,
+    summarize_calibration,
+)
 from .data import generate_synthetic_startups
 from .explainability import explain_applicant
 from .fairness import fairness_audit, opportunity_gap
@@ -25,10 +32,12 @@ from .public_data import PUBLIC_DATASETS, get_sba_dataset_metadata, load_sba_pub
 __all__ = [
     "ModelResult",
     "PUBLIC_DATASETS",
+    "CalibrationResult",
     "allocate_capital",
     "benchmark_model_registry",
     "build_pipeline",
     "explain_applicant",
+    "expected_calibration_error",
     "fairness_audit",
     "generate_synthetic_startups",
     "get_sba_dataset_metadata",
@@ -37,9 +46,12 @@ __all__ = [
     "opportunity_gap",
     "prepare_public_state_map",
     "public_state_metric_options",
+    "reliability_curve_frame",
+    "run_calibration_benchmark",
     "run_model_benchmark",
     "summarize_allocation",
     "summarize_synthetic_states",
     "summarize_benchmark",
+    "summarize_calibration",
     "train_model",
 ]

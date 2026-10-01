@@ -101,6 +101,7 @@ See [Architecture](docs/ARCHITECTURE.md) and [Methodology](docs/METHODOLOGY.md).
 - Scikit-learn preprocessing and Random Forest classification pipeline
 - Holdout evaluation with ROC-AUC, accuracy, precision, recall, F1, and Brier score
 - Reproducible multi-model benchmark across Logistic Regression, Random Forest, Extra Trees, and HistGradientBoosting
+- Probability-calibration benchmark with sigmoid/isotonic calibration and reliability-curve outputs
 - Capital Readiness Score derived from predicted funding-success probability
 - Global feature-importance reporting
 - Applicant-level local sensitivity explanations
@@ -207,6 +208,7 @@ python -m pytest -q
 │       ├── __init__.py
 │       ├── allocation.py
 │       ├── config.py
+│       ├── calibration.py
 │       ├── data.py
 │       ├── explainability.py
 │       ├── fairness.py
@@ -217,7 +219,10 @@ python -m pytest -q
 ├── scripts/
 │   └── run_benchmarks.py
 ├── benchmarks/
-│   └── reference_summary.csv
+│   ├── reference_summary.csv
+│   ├── calibration_summary.csv
+│   ├── calibration_runs.csv
+│   └── reliability_curve.csv
 ├── tests/
 ├── examples/
 │   ├── 01_capital_readiness.ipynb
